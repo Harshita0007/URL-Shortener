@@ -14,8 +14,7 @@ class URLStore:
     """
     
     def __init__(self):
-        # Dictionary to store URL mappings
-        # Structure: {short_code: {original_url, clicks, created_at}}
+     
         self._urls: Dict[str, Dict] = {}
     
     def store_url(self, short_code: str, original_url: str) -> None:

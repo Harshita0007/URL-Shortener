@@ -38,26 +38,26 @@ def is_valid_url(url: str) -> bool:
         return False
     
     try:
-        # Parse the URL
+        
         parsed = urlparse(url)
         
-        # Check if scheme and netloc are present
+       
         if not parsed.scheme or not parsed.netloc:
             return False
         
-        # Check if scheme is http or https
+        
         if parsed.scheme not in ['http', 'https']:
             return False
         
-        # Basic domain validation using regex
+        
         domain_pattern = re.compile(
             r'^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)*[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$'
         )
         
-        # Extract hostname (remove port if present)
+       
         hostname = parsed.netloc.split(':')[0]
         
-        # Validate hostname
+       
         if not domain_pattern.match(hostname):
             return False
         

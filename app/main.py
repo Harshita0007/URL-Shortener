@@ -2,19 +2,15 @@ from flask import Flask, request, jsonify, redirect, render_template, url_for
 from datetime import datetime
 import threading
 
-# Custom utility and model imports
 from models import URLStore
 from utils import generate_short_code, is_valid_url
 
 app = Flask(__name__)
 
-# Thread-safe in-memory store
 url_store = URLStore()
 lock = threading.Lock()
 
-# -------------------------------------
-# ✅ HEALTH CHECK ENDPOINTS
-# -------------------------------------
+
 
 @app.route('/')
 def health_check():
@@ -34,9 +30,7 @@ def api_health():
 def health():
     return jsonify({"status": "healthy"}), 200
 
-# -------------------------------------
-# ✅ API ENDPOINTS
-# -------------------------------------
+
 
 @app.route('/api/shorten', methods=['POST'])
 def shorten_url():
@@ -91,9 +85,7 @@ def get_stats(short_code):
     except Exception as e:
         return jsonify({"error": "Internal server error"}), 500
 
-# -------------------------------------
-# ✅ REDIRECT LOGIC
-# -------------------------------------
+
 
 @app.route('/<short_code>')
 def redirect_url(short_code):
@@ -117,9 +109,7 @@ def redirect_url(short_code):
     except Exception as e:
         return render_template("error.html", error="Internal server error"), 500
 
-# -------------------------------------
-# ✅ UI ROUTES (Forms + HTML rendering)
-# -------------------------------------
+
 
 @app.route("/shorten", methods=["GET", "POST"])
 def shorten_form():
@@ -155,7 +145,7 @@ def show_stats(code):
 
     return render_template("stats.html", code=code, data=url_data)
 
-# -------------------------------------
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
