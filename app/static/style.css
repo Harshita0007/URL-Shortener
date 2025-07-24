@@ -1,0 +1,112 @@
+/* app/static/style.css */
+
+/* Base body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9fafb;
+    color: #333;
+    padding: 2rem;
+    margin: 0;
+}
+
+/* Main container for content */
+.container {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Heading styles */
+h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    text-align: center;
+    color: #1f2937;
+}
+
+h1 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Form layout */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 1.5rem;
+}
+
+/* URL input field */
+input[type="url"] {
+    flex: 1;
+    padding: 0.9rem 1.1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: #fefefe;
+    transition: border-color 0.2s;
+}
+
+input[type="url"]:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+/* Submit button */
+button {
+    padding: 0.9rem 1.5rem;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+/* Paragraph styling */
+p {
+    margin-top: 1.5rem;
+    font-size: 16px;
+    word-break: break-word;
+}
+
+/* Link display */
+a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Error message styling */
+.error {
+    color: red;
+    font-weight: bold;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* Fade-in animation for container */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

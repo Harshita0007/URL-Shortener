@@ -1,0 +1,16 @@
+<!-- app/templates/stats.html -->
+{% extends "base.html" %}
+
+{% block content %}
+{% if error %}
+<p class="error">{{ error }}</p>
+{% else %}
+<h2>Stats for: {{ code }}</h2>
+<ul>
+    <li>Original URL: {{ data['url'] }}</li>
+    <li>Created At: {{ data['created_at'] }}</li>
+    <li>Visit Count: {{ data['visits'] }}</li>
+</ul>
+<a href="{{ data['url'] }}" target="_blank">Go to Original URL</a>
+{% endif %}
+{% endblock %}

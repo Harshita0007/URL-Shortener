@@ -1,0 +1,10 @@
+<!-- app/templates/shortened.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<p>Your shortened URL:</p>
+<a href="{{ short_url }}" target="_blank">{{ short_url }}</a>
+
+<p><a href="{{ url_for('show_stats', code=code) }}">View Stats</a></p>
+<p><a href="{{ url_for('shorten_form') }}">Shorten another URL</a></p>
+{% endblock %}
