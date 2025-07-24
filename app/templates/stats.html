@@ -2,15 +2,65 @@
 {% extends "base.html" %}
 
 {% block content %}
+<a href="{{ url_for('shorten_form') }}" class="back-link">
+    <i class="fas fa-arrow-left"></i>
+    Back to Shortener
+</a>
+
+<h1><i class="fas fa-chart-bar"></i> URL Statistics</h1>
+<p class="subtitle">Analytics for your shortened URL</p>
+
 {% if error %}
-<p class="error">{{ error }}</p>
+<div class="error">
+    <i class="fas fa-exclamation-triangle"></i>
+    {{ error }}
+</div>
 {% else %}
-<h2>Stats for: {{ code }}</h2>
-<ul>
-    <li>Original URL: {{ data['url'] }}</li>
-    <li>Created At: {{ data['created_at'] }}</li>
-    <li>Visit Count: {{ data['visits'] }}</li>
-</ul>
-<a href="{{ data['url'] }}" target="_blank">Go to Original URL</a>
+<div class="result-box">
+    <div style="margin-bottom: 20px;">
+        <p style="color: #718096; margin-bottom: 8px;">Short Code:</p>
+        <div class="short-url">{{ code }}</div>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <p style="color: #718096; margin-bottom: 8px;">Original URL:</p>
+        <div class="url-display">{{ data.original_url }}</div>
+    </div>
+
+    <div class="stats-info">
+        <div class="stat-item">
+            <div class="stat-value">
+                <i class="fas fa-mouse-pointer"></i>
+                {{ data.clicks }}
+            </div>
+            <div class="stat-label">Total Clicks</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">
+                <i class="fas fa-calendar"></i>
+                {{ data.created_at.strftime('%d') }}
+            </div>
+            <div class="stat-label">{{ data.created_at.strftime('%b %Y') }}</div>
+        </div>
+    </div>
+
+    <div class="action-buttons" style="margin-top: 20px;">
+        <button onclick="copyToClipboard('{{ request.host_url.rstrip('/') }}/{{ code }}', this)" class="btn-secondary">
+            <i class="fas fa-copy"></i>
+            Copy Link
+        </button>
+        <a href="{{ request.host_url.rstrip('/') }}/{{ code }}" target="_blank" class="btn-secondary">
+            <i class="fas fa-external-link-alt"></i>
+            Visit Link
+        </a>
+    </div>
+</div>
 {% endif %}
+
+<div class="center-content">
+    <a href="{{ url_for('shorten_form') }}" class="btn">
+        <i class="fas fa-plus"></i>
+        Shorten Another URL
+    </a>
+</div>
 {% endblock %}

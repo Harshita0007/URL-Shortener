@@ -1,13 +1,24 @@
-<!-- app/templates/index.html -->
 {% extends "base.html" %}
 
 {% block content %}
+<h1><i class="fas fa-link"></i> URL Shortener</h1>
+<p class="subtitle">Transform long URLs into short, shareable links</p>
+
 <form method="POST" action="{{ url_for('shorten_form') }}">
-    <input type="url" name="url" placeholder="Enter URL to shorten" required>
-    <button type="submit">Shorten</button>
+    <div class="form-group">
+        <i class="fas fa-globe"></i>
+        <input type="url" name="url" placeholder="Enter URL to shorten (e.g., https://example.com)" required>
+    </div>
+    <button type="submit" class="btn">
+        <i class="fas fa-cut"></i>
+        Shorten URL
+    </button>
 </form>
 
 {% if error %}
-<p class="error">{{ error }}</p>
+<div class="error">
+    <i class="fas fa-exclamation-triangle"></i>
+    {{ error }}
+</div>
 {% endif %}
 {% endblock %}

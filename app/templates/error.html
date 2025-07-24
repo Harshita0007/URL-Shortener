@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="error-page">
+    <div class="error-icon">
+        <i class="fas fa-exclamation-triangle"></i>
+    </div>
+    <h1 class="error-title">Oops! Something went wrong</h1>
+    <p class="subtitle">{{ error or "An unexpected error occurred. Please try again." }}</p>
+
+    <div class="center-content">
+        <a href="{{ url_for('shorten_form') }}" class="btn">
+            <i class="fas fa-home"></i>
+            Go to Homepage
+        </a>
+    </div>
+</div>

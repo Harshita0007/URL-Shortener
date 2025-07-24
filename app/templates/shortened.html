@@ -2,9 +2,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>Your shortened URL:</p>
-<a href="{{ short_url }}" target="_blank">{{ short_url }}</a>
+<a href="{{ url_for('shorten_form') }}" class="back-link">
+    <i class="fas fa-arrow-left"></i>
+    Back to Shortener
+</a>
 
-<p><a href="{{ url_for('show_stats', code=code) }}">View Stats</a></p>
-<p><a href="{{ url_for('shorten_form') }}">Shorten another URL</a></p>
+<h1><i class="fas fa-check-circle" style="color: #38a169;"></i> Success!</h1>
+<p class="subtitle">Your URL has been shortened successfully</p>
+
+<div class="result-box">
+    <div style="margin-bottom: 16px;">
+        <i class="fas fa-link" style="color: #667eea; font-size: 2rem;"></i>
+    </div>
+    <p style="color: #718096; margin-bottom: 8px;">Your shortened URL:</p>
+    <div class="short-url" id="shortUrl">{{ short_url }}</div>
+
+    <div class="action-buttons">
+        <button onclick="copyToClipboard('{{ short_url }}', this)" class="btn-secondary">
+            <i class="fas fa-copy"></i>
+            Copy Link
+        </button>
+        <a href="{{ url_for('show_stats', code=code) }}" class="btn-secondary">
+            <i class="fas fa-chart-bar"></i>
+            View Stats
+        </a>
+    </div>
+</div>
+
+<div class="center-content">
+    <a href="{{ url_for('shorten_form') }}" class="btn">
+        <i class="fas fa-plus"></i>
+        Shorten Another URL
+    </a>
+</div>
 {% endblock %}
